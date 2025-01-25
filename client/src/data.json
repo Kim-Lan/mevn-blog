@@ -1,0 +1,13 @@
+{
+  "posts": [
+    {
+      "title": "Hello world!",
+      "slug": "hello-world",
+      "id": 1,
+      "date": "2024-01-24",
+      "thumbnail": "thumbnail.png",
+      "thumbnailAlt": "placeholder thumbnail",
+      "contents": "This is the first post of this blog!"
+    }
+  ]
+}
