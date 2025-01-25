@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import sourceData from '@/data.json'
+import { formatDate } from '../utils/dateUtils'
 
 const posts = sourceData.posts;
-
-function formatDate(date: string): Date {
-  return (new Date(date)).toLocaleDateString();
-}
 </script>
 
 <template>
@@ -14,7 +11,7 @@ function formatDate(date: string): Date {
       <router-link  :to="{ name: 'post', params: { id: post.id, slug: post.slug }}">
         <h2 class="font-semibold text-2xl">{{ post.title }}</h2>
       </router-link>
-      <p class="text-sm text-slate-600 mb-2">{{ post.author }} &middot; {{ formatDate(post.date) }}</p>
+      <p class="text-sm text-slate-600 mb-2">@{{ post.author }} &middot; {{ formatDate(post.date) }}</p>
       <p class="text-sm line-clamp-3">{{ post.contents }}</p>
     </div>
   </div>
