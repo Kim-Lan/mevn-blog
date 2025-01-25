@@ -10,7 +10,7 @@
       <input
         class="border-3 border-dashed border-slate-200 bg-slate-100 text-slate-500 rounded p-2"
         type="file"
-        name="thumbnail"
+        name="upload-cover"
       />
       <input
         name="title"

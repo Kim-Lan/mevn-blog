@@ -8,9 +8,11 @@ const posts = sourceData.posts;
 <template>
   <div class="w-full md:w-3/4 lg:w-1/2 flex flex-col gap-6">
     <div v-for="post in posts.slice().reverse()" class="w-full bg-white border-1 border-slate-200 rounded-lg overflow-hidden">
-      <div v-if="post.thumbnail" class="h-50 md:h-60 lg:h-70 overflow-hidden flex flex-col justify-center">
-        <img class="object-cover" :src="`/images/${post.thumbnail}`" :alt="post.thumbnailAlt">
+      <!-- Cover Photo -->
+      <div v-if="post.cover" class="h-50 md:h-60 lg:h-70 overflow-hidden flex flex-col justify-center">
+        <img class="object-cover" :src="`/images/${post.cover}`" :alt="post.coverAlt">
       </div>
+
       <div class="px-4 py-3">
         <router-link  :to="{ name: 'post', params: { id: post.id, slug: post.slug }}">
           <h2 class="font-semibold text-2xl text-slate-800">{{ post.title }}</h2>
