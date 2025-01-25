@@ -7,7 +7,7 @@ import AppFooter from './components/AppFooter.vue'
 <template>
   <app-container>
     <app-header />
-    <main>
+    <main class="flex flex-col items-center">
       <router-view :key="$route.path"></router-view>
     </main>
     <app-footer />

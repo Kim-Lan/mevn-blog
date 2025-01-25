@@ -1,13 +1,34 @@
 {
   "posts": [
     {
-      "title": "Hello world!",
-      "slug": "hello-world",
+      "title": "The first post",
+      "slug": "the-first-post",
       "id": 1,
+      "author": "Kim-Lan",
       "date": "2024-01-24",
       "thumbnail": "thumbnail.png",
       "thumbnailAlt": "placeholder thumbnail",
-      "contents": "This is the first post of this blog!"
+      "contents": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer egestas ex risus, eget porttitor lorem lobortis eget. In porttitor dolor sagittis, interdum quam a, finibus enim. Suspendisse nisl nisi, ultricies sit amet tincidunt nec, ultrices sed ipsum. Phasellus elit dolor, faucibus ac mauris sit amet, sagittis tincidunt eros. Donec quam mauris, condimentum non finibus efficitur, vehicula et sapien. Cras laoreet vel odio vel vestibulum. Fusce laoreet orci nec blandit molestie.\nSed elit lacus, placerat non egestas iaculis, convallis nec tellus. Nam enim purus, luctus vel ipsum id, elementum tincidunt elit. Aliquam eros magna, scelerisque vitae vulputate in, maximus vitae risus. Donec semper nec leo in faucibus. Sed tempor auctor erat eu fermentum. Donec vestibulum odio neque, auctor pretium lectus dapibus convallis. Pellentesque sem elit, porttitor in laoreet sed, varius quis enim. Donec imperdiet hendrerit ipsum ac volutpat. Etiam auctor quam ac lacinia ullamcorper. Fusce cursus lectus quam, sit amet volutpat augue mattis nec. Cras dictum metus felis. Suspendisse sit amet nibh orci. Mauris faucibus dolor eu tellus varius, nec sollicitudin odio porta. Nullam a tincidunt sem."
+    },
+    {
+      "title": "This is a post",
+      "slug": "this-is-a-post",
+      "id": 2,
+      "author": "Kim-Lan",
+      "date": "2024-01-25",
+      "thumbnail": "thumbnail.png",
+      "thumbnailAlt": "placeholder thumbnail",
+      "contents": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer egestas ex risus, eget porttitor lorem lobortis eget. In porttitor dolor sagittis, interdum quam a, finibus enim. Suspendisse nisl nisi, ultricies sit amet tincidunt nec, ultrices sed ipsum. Phasellus elit dolor, faucibus ac mauris sit amet, sagittis tincidunt eros. Donec quam mauris, condimentum non finibus efficitur, vehicula et sapien. Cras laoreet vel odio vel vestibulum. Fusce laoreet orci nec blandit molestie.\nSed elit lacus, placerat non egestas iaculis, convallis nec tellus. Nam enim purus, luctus vel ipsum id, elementum tincidunt elit. Aliquam eros magna, scelerisque vitae vulputate in, maximus vitae risus. Donec semper nec leo in faucibus. Sed tempor auctor erat eu fermentum. Donec vestibulum odio neque, auctor pretium lectus dapibus convallis. Pellentesque sem elit, porttitor in laoreet sed, varius quis enim. Donec imperdiet hendrerit ipsum ac volutpat. Etiam auctor quam ac lacinia ullamcorper. Fusce cursus lectus quam, sit amet volutpat augue mattis nec. Cras dictum metus felis. Suspendisse sit amet nibh orci. Mauris faucibus dolor eu tellus varius, nec sollicitudin odio porta. Nullam a tincidunt sem."
+    },
+    {
+      "title": "Hello world!",
+      "slug": "hello-world",
+      "id": 3,
+      "author": "Kim-Lan",
+      "date": "2024-01-26",
+      "thumbnail": "thumbnail.png",
+      "thumbnailAlt": "placeholder thumbnail",
+      "contents": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer egestas ex risus, eget porttitor lorem lobortis eget. In porttitor dolor sagittis, interdum quam a, finibus enim. Suspendisse nisl nisi, ultricies sit amet tincidunt nec, ultrices sed ipsum. Phasellus elit dolor, faucibus ac mauris sit amet, sagittis tincidunt eros. Donec quam mauris, condimentum non finibus efficitur, vehicula et sapien. Cras laoreet vel odio vel vestibulum. Fusce laoreet orci nec blandit molestie.\nSed elit lacus, placerat non egestas iaculis, convallis nec tellus. Nam enim purus, luctus vel ipsum id, elementum tincidunt elit. Aliquam eros magna, scelerisque vitae vulputate in, maximus vitae risus. Donec semper nec leo in faucibus. Sed tempor auctor erat eu fermentum. Donec vestibulum odio neque, auctor pretium lectus dapibus convallis. Pellentesque sem elit, porttitor in laoreet sed, varius quis enim. Donec imperdiet hendrerit ipsum ac volutpat. Etiam auctor quam ac lacinia ullamcorper. Fusce cursus lectus quam, sit amet volutpat augue mattis nec. Cras dictum metus felis. Suspendisse sit amet nibh orci. Mauris faucibus dolor eu tellus varius, nec sollicitudin odio porta. Nullam a tincidunt sem."
     }
   ]
 }
