@@ -7,7 +7,7 @@ const posts = sourceData.posts;
 
 <template>
   <div class="w-full md:w-3/4 lg:w-1/2 flex flex-col gap-6">
-    <div v-for="post in posts.slice().reverse()" class="w-full bg-white border-1 border-slate-200 rounded-lg overflow-hidden">
+    <section v-for="post in posts.slice().reverse()" class="w-full bg-white border-1 border-slate-200 rounded-lg overflow-hidden">
       <!-- Cover Photo -->
       <div v-if="post.cover" class="h-50 md:h-60 lg:h-70 overflow-hidden flex flex-col justify-center">
         <img class="object-cover" :src="`/images/${post.cover}`" :alt="post.coverAlt">
@@ -24,6 +24,6 @@ const posts = sourceData.posts;
           {{ post.contents }}
         </p>
       </div>
-    </div>
+    </section>
   </div>
 </template>

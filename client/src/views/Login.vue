@@ -1,5 +1,5 @@
 <template>
-  <div class="w-104">
+  <section class="w-104">
     <form class="flex flex-col gap-4 bg-white p-8 rounded">
       <h2 class="text-2xl text-slate-800">Login</h2>
       <input
@@ -14,5 +14,5 @@
       />
       <button class="bg-blue-400 text-white drop-shadow rounded p-2">Login</button>
     </form>
-  </div>
+  </section>
 </template>

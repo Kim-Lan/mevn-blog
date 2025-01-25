@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full md:w-3/4 lg:w-1/2">
+  <section class="w-full md:w-3/4 lg:w-1/2">
     <form
       method="post"
       action="/upload"
@@ -20,5 +20,5 @@
       <textarea rows="5" class="bg-slate-200 p-2 rounded"></textarea>
       <button class="bg-blue-400 text-white drop-shadow rounded p-2">Create Post</button>
     </form>
-  </div>
+  </section>
 </template>
