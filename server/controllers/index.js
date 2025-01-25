@@ -11,7 +11,21 @@ export const createPost = asyncHandler(async (req, res) => {
 });
 
 export const loginUser = asyncHandler(async (req, res) => {
-  res.json('login user');
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    res.status(401).json({ 'message': 'Unauthorized' });
+  }
+
+  const isValid = await bcrypt.compare(password, user.password);
+
+  if (!isValid) {
+    res.status(401).json({ 'message': 'Unauthorized' });
+  }
+
+  res.status(200).json({ 'message': 'Successfully logged in'});
 });
 
 export const registerUser = asyncHandler(async (req, res) => {

@@ -17,7 +17,7 @@ function register() {
       },
       body: JSON.stringify({
         username: username.value,
-        email: email.value,
+        email: email.value.toLowerCase(),
         password: password.value,
       }),
     });
@@ -46,7 +46,7 @@ function register() {
       />
       <input
         v-model="email"
-        type="text"
+        type="email"
         name="email"
         placeholder="Email"
         :disabled="isLoading"
