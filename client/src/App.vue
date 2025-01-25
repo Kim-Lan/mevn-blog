@@ -1,12 +1,9 @@
 <script setup lang="ts">
+import NavigationBar from './components/NavigationBar.vue'
 </script>
 
 <template>
-  <header>
-    <router-link to="/">
-      <h1 class="font-bold text-3xl">MEVN Blog</h1>
-    </router-link>
-  </header>
+  <NavigationBar />
 
   <main>
     <router-view :key="$route.path"></router-view>
