@@ -1,7 +1,10 @@
 <template>
   <div class="w-full md:w-3/4 lg:w-1/2 py-8 px-4">
-    <form class="flex flex-col gap-4">
-      <h2 class="text-2xl">Create New Post</h2>
+    <form class="flex flex-col gap-4 bg-white p-8 rounded">
+      <h2 class="text-2xl text-slate-800">Create New Post</h2>
+      <div class="border-3 border-dashed border-slate-200 bg-slate-100 text-slate-500 rounded p-2">
+        Upload Thumbnail
+      </div>
       <input
         name="title"
         placeholder="Post Title"

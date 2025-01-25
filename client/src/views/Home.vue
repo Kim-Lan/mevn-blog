@@ -13,12 +13,12 @@ const posts = sourceData.posts;
       </div>
       <div class="px-3 py-2">
         <router-link  :to="{ name: 'post', params: { id: post.id, slug: post.slug }}">
-          <h2 class="font-semibold text-2xl">{{ post.title }}</h2>
+          <h2 class="font-semibold text-2xl text-slate-800">{{ post.title }}</h2>
         </router-link>
         <p class="text-sm text-slate-600 mb-2">
           @{{ post.author }} &middot; {{ formatDate(post.date) }}
         </p>
-        <p class="text-sm line-clamp-3">
+        <p class="text-sm line-clamp-3 text-slate-800">
           {{ post.contents }}
         </p>
       </div>
