@@ -1,8 +1,8 @@
-const express = require('express');
-const cookieParser = require('cookie-parser');
-const connectDb = require('./config/db');
-const path = require('path');
-const api = require('./routes/index.js');
+import express from 'express'
+import cookieParser from 'cookie-parser'
+import connectDb from './config/db.js'
+import path from 'path'
+import api from './routes/index.js'
 
 const PORT = process.env.PORT || 3001;
 

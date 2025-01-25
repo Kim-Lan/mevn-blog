@@ -4,7 +4,7 @@
   "description": "",
   "license": "MIT",
   "author": "Kim-Lan",
-  "type": "commonjs",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node --env-file=.env server.js",
