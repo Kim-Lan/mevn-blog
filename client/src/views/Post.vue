@@ -1,12 +1,12 @@
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
-import { useRoute } from 'vue-router'
 import sourceData from '@/data.json'
 
-const route = useRoute();
+const props = defineProps<{
+  id: string,
+}>();
 
-const postId = parseInt(route.params.id);
-const post = sourceData.posts.find((post) => post.id === postId);
+const post = sourceData.posts.find((post) => post.id === parseInt(props.id));
 </script>
 
 <template>

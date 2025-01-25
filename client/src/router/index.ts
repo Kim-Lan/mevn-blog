@@ -12,7 +12,8 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/post/:id/:slug',
     name: 'post',
-    component: () => import('../views/Post.vue')
+    component: () => import('../views/Post.vue'),
+    props: true
   },
   {
     path: '/:catchAll(.*)',
