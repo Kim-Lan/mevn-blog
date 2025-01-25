@@ -7,10 +7,10 @@ const username = ref('');
 const email = ref('');
 const password = ref('');
 
-function register() {
+async function register() {
   try {
     isLoading.value = true;
-    fetch('http://localhost:3001/api/register', {
+    await fetch('http://localhost:3001/api/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

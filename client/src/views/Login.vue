@@ -6,10 +6,10 @@ const isLoading = ref(false);
 const email = ref('');
 const password = ref('');
 
-function login() {
+async function login() {
   try {
     isLoading.value = true;
-    fetch('http://localhost:3001/api/login', {
+    await fetch('http://localhost:3001/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

@@ -17,12 +17,14 @@ export const loginUser = asyncHandler(async (req, res) => {
 
   if (!user) {
     res.status(401).json({ 'message': 'Unauthorized' });
+    return;
   }
 
   const isValid = await bcrypt.compare(password, user.password);
 
   if (!isValid) {
     res.status(401).json({ 'message': 'Unauthorized' });
+    return;
   }
 
   res.status(200).json({ 'message': 'Successfully logged in'});
@@ -33,16 +35,19 @@ export const registerUser = asyncHandler(async (req, res) => {
 
   if (!username || !email || !password) {
     res.status(400).json({ 'error': 'All fields are required'});
+    return;
   }
 
   const existingUser = await User.exists({ username: { '$regex': username, $options: 'i' }});
   if (existingUser) {
     res.status(409).json({ 'error': 'Username already taken'});
+    return;
   }
 
   const existingEmail = await User.exists({ email });
   if(existingEmail) {
     res.status(409).json({ 'error': 'Email already in use' });
+    return;
   }
 
   const salt = await bcrypt.genSalt(10);
