@@ -1,5 +1,5 @@
 <template>
-  <div class="w-104 py-8 px-4">
+  <div class="w-104">
     <form class="flex flex-col gap-4 bg-white p-8 rounded">
       <h2 class="text-2xl text-slate-800">Login</h2>
       <input
