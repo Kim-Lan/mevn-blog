@@ -3,10 +3,10 @@ import { computed } from 'vue'
 import sourceData from '@/data.json'
 
 const props = defineProps<{
-  id: string,
+  id: number,
 }>();
 
-const post = sourceData.posts.find((post) => post.id === parseInt(props.id));
+const post = sourceData.posts.find((post) => post.id === props.id);
 </script>
 
 <template>

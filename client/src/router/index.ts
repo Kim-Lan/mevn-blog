@@ -13,7 +13,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/post/:id/:slug',
     name: 'post',
     component: () => import('../views/Post.vue'),
-    props: true
+    props: route => ({ id: parseInt(route.params.id) })
   },
   {
     path: '/:catchAll(.*)',
