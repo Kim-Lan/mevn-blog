@@ -16,9 +16,9 @@ const routes: Array<RouteRecordRaw> = [
     props: route => ({ id: parseInt(route.params.id) })
   },
   {
-    path: '/:catchAll(.*)',
-    name: "NotFound",
-    component: NotFound
+    path: '/:catchAll(.*)*',
+    name: 'NotFound',
+    component: () => import('../views/NotFound.vue')
   }
 ]
 
