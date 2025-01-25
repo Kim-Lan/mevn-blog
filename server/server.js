@@ -1,4 +1,6 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
+const connectDb = require('./config/db');
 const path = require('path');
 const api = require('./routes/index.js');
 
@@ -6,9 +8,12 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-// Middleware for parsing JSON and urlencoded form data
+connectDb();
+
+// Middleware for parsing JSON, urlencoded form data, and cookies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use('/api', api);
 app.use(express.static('public'));
