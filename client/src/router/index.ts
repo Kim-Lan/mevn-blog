@@ -20,12 +20,12 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/Create.vue')
   },
   {
-    path: '/post/:id/:slug',
+    path: '/post/:slug',
     name: 'post',
     component: () => import('../views/Post.vue'),
     beforeEnter(to, from) {
       const exists = sourceData.posts.find(
-        post => post.id === parseInt(to.params.id)
+        post => post.slug === to.params.slug
       );
 
       if (!exists) {
@@ -37,7 +37,7 @@ const routes: Array<RouteRecordRaw> = [
         };
       }
     },
-    props: route => ({ id: parseInt(route.params.id) })
+    props: true
   },
   {
     path: '/:pathMatch(.*)*',

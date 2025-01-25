@@ -4,10 +4,10 @@ import sourceData from '@/data.json'
 import { formatDate } from '../utils/dateUtils'
 
 const props = defineProps<{
-  id: number,
+  slug: string,
 }>();
 
-const post = sourceData.posts.find((post) => post.id === props.id);
+const post = sourceData.posts.find((post) => post.slug === props.slug);
 </script>
 
 <template>

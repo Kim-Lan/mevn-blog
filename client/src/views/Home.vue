@@ -14,7 +14,7 @@ const posts = sourceData.posts;
       </div>
 
       <div class="px-4 py-3">
-        <router-link  :to="{ name: 'post', params: { id: post.id, slug: post.slug }}">
+        <router-link  :to="{ name: 'post', params: { slug: post.slug }}">
           <h2 class="font-semibold text-2xl text-slate-800">{{ post.title }}</h2>
         </router-link>
         <p class="text-sm text-slate-600 mb-2">
