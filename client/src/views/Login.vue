@@ -2,7 +2,10 @@
 import { ref } from 'vue'
 import { useAuthStore } from '../stores/auth.store.ts'
 
+const BASE_API_URL = 'http://localhost:3001';
+
 const isLoading = ref(false);
+const errorMessage = ref('');
 
 const email = ref('');
 const password = ref('');
@@ -12,9 +15,26 @@ const auth = useAuthStore();
 async function login() {
   try {
     isLoading.value = true;
-    const user = await auth.login(email.value, password.value);
+    const response = await fetch(`${BASE_API_URL}/api/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email.value.toLowerCase(),
+          password: password.value,
+        }),
+      }
+    );
+    if (response && response.ok) {
+      const data = await response.json();
+      auth.setUser(data);
+      errorMessage.value = '';
+    } else {
+      errorMessage.value = response.statusText;
+    }
   } catch(error) {
-    console.error(error);
+    errorMessage.value = error.message;
   } finally {
     isLoading.value = false;
   }
@@ -28,6 +48,13 @@ async function login() {
       class="flex flex-col gap-4 bg-white p-8 rounded"
     >
       <h2 class="text-2xl text-slate-800">Login</h2>
+      <div
+        v-if="errorMessage"
+        class="bg-red-400 text-white py-2 px-3 rounded"
+      >
+        <font-awesome-icon :icon="['fas', 'triangle-exclamation']" />
+        {{ errorMessage }}
+      </div>
       <input
         v-model="email"
         type="email"
