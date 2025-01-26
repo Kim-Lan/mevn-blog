@@ -27,7 +27,12 @@ export const loginUser = asyncHandler(async (req, res) => {
     return;
   }
 
-  res.status(200).json({ 'message': 'Successfully logged in'});
+  const userObj = user.toObject();
+  res.status(200).json({
+    id: userObj._id,
+    username: userObj.username,
+    email: userObj.email,
+  });
 });
 
 export const registerUser = asyncHandler(async (req, res) => {

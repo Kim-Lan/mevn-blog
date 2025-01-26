@@ -1,26 +1,20 @@
 <script setup>
 import { ref } from 'vue'
+import { useAuthStore } from '../stores/auth.store.ts'
 
 const isLoading = ref(false);
 
 const email = ref('');
 const password = ref('');
 
+const auth = useAuthStore();
+
 async function login() {
   try {
     isLoading.value = true;
-    await fetch('http://localhost:3001/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: email.value.toLowerCase(),
-        password: password.value,
-      }),
-    });
+    const user = await auth.login(email.value, password.value);
   } catch(error) {
-
+    console.error(error);
   } finally {
     isLoading.value = false;
   }
