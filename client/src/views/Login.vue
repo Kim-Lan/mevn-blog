@@ -1,8 +1,12 @@
 <script setup>
 import { ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth.store.ts'
 
 const BASE_API_URL = 'http://localhost:3001';
+
+const route = useRoute();
+const router = useRouter();
 
 const isLoading = ref(false);
 const errorMessage = ref('');
@@ -30,10 +34,13 @@ async function login() {
       const data = await response.json();
       auth.setUser(data);
       errorMessage.value = '';
+      const redirectPath = route.query.redirect || '/';
+      router.push(redirectPath);
     } else {
       errorMessage.value = response.statusText;
     }
   } catch(error) {
+    console.error(error);
     errorMessage.value = error.message;
   } finally {
     isLoading.value = false;
