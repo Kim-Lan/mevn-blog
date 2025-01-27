@@ -1,11 +1,19 @@
 <script setup>
+import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth.store.ts'
+import { BASE_API_URL } from '../constants.js'
 
 const route = useRoute();
 const router = useRouter();
 
 const auth = useAuthStore();
+
+const searchTerm = ref('');
+
+function search() {
+  router.push({ name: 'search', query: { query: searchTerm.value }});
+}
 
 function logout() {
   auth.setUser(null);
@@ -21,16 +29,22 @@ function logout() {
       <router-link to="/">
         <h1 class="font-bold text-4xl hover:text-slate-200">MEVN Blog</h1>
       </router-link>
-      <div class="self-end text-slate-700">
+      <form
+        @submit.prevent="search"
+        class="self-end text-slate-700"
+      >
         <input
+          v-model="searchTerm"
           type="text"
           name="search"
           class="bg-slate-200 rounded-l-xl py-1 px-2"
         />
-        <button class="bg-slate-300 hover:bg-slate-100 active:bg-slate-400 rounded-r-xl py-1 px-2">
+        <button
+          class="bg-slate-300 hover:bg-slate-100 active:bg-slate-400 rounded-r-xl py-1 px-2"
+        >
           <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
         </button>
-      </div>
+      </form>
     </div>
 
     <div class="flex gap-4 font-bold">

@@ -1,27 +1,35 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { formatDate } from '../utils/dateUtils'
 import { BASE_API_URL } from '../constants.js'
 
+const route = useRoute();
+
 const posts = ref(null);
 
-onMounted(() => getPosts());
+onMounted(() => search());
 
-async function getPosts() {
+watch(() => route.query, search);
+
+async function search() {
   try {
-    const response = await fetch(`${BASE_API_URL}/api/posts`, {
-      method: 'GET'
+    const response = await fetch(`${BASE_API_URL}/api/search?query=${route.query.query}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
     });
     if (response && response.ok) {
       const data = await response.json();
       posts.value = data;
     }
-  } catch (error) {
+  } catch(error) {
     console.error(error);
   } finally {
-
   }
 }
+
 </script>
 
 <template>

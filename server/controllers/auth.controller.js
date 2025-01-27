@@ -35,7 +35,7 @@ export const registerUser = asyncHandler(async (req, res) => {
     return;
   }
 
-  const existingUser = await User.exists({ username: { '$regex': username, $options: 'i' }});
+  const existingUser = await User.exists({ username: { $regex: username, $options: 'i' }});
   if (existingUser) {
     res.status(409).json({ 'error': 'Username already taken'});
     return;
