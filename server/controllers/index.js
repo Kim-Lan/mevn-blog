@@ -5,7 +5,12 @@ import { Post } from '../models/post.model.js'
 import { getSlug } from '../utils/utils.js'
 
 export const getAllPosts = asyncHandler(async (req, res) => {
-  res.json('get all posts');
+  const posts = await Post.find({}).populate({
+    path: 'author',
+    select: 'username'
+  });
+  
+  res.status(200).json(posts);
 });
 
 export const createPost = asyncHandler(async (req, res) => {
