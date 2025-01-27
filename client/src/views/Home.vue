@@ -34,7 +34,7 @@ async function getPosts() {
     >
       <!-- Cover Photo -->
       <div v-if="post.cover" class="h-50 md:h-60 lg:h-70 overflow-hidden flex flex-col justify-center">
-        <img class="object-cover" :src="`/images/${post.cover}`" :alt="post.coverAlt">
+        <img class="object-cover" :src="`${BASE_API_URL}/uploads/${post.cover}`" :alt="post.coverAlt">
       </div>
 
       <div class="px-4 py-3">

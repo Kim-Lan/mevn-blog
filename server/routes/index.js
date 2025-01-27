@@ -1,5 +1,22 @@
 import express from 'express'
+import multer from 'multer'
+import path from 'path'
 import { getPost, getAllPosts, createPost, loginUser, registerUser } from '../controllers/index.js'
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './public/uploads');
+  },
+  filename: function (req, file, cb) {
+    const fileExtension = path.extname(file.originalname);
+    const fileName = Date.now() + fileExtension;
+    cb(null, fileName);
+  }
+});
+
+const upload = multer({
+  storage
+});
 
 const router = express.Router();
 
@@ -7,7 +24,7 @@ router.get('/post/:slug', getPost);
 
 router.get('/posts', getAllPosts);
 
-router.post('/create', createPost);
+router.post('/create', upload.single('cover'), createPost);
 
 router.post('/login', loginUser);
 

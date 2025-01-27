@@ -14,16 +14,12 @@ const contents = ref('');
 async function createPost() {
   try {
     isLoading.value = true;
+    let formData = new FormData(document.getElementById('createForm'));
+    formData.append('author', auth.user.username);
+    console.log(formData);
     const response = await fetch(`${BASE_API_URL}/api/create`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        title: title.value,
-        author: auth.user.username,
-        contents: contents.value
-      }),
+      body: formData,
     });
     if (response && response.ok) {
       const data = await response.json();
@@ -45,6 +41,7 @@ async function createPost() {
   <section class="w-full md:w-3/4 lg:w-1/2">
     <form
       @submit.prevent="createPost"
+      id="createForm"
       enctype="multipart/form-data"
       class="flex flex-col gap-4 bg-white p-8 rounded"
     >
@@ -52,7 +49,7 @@ async function createPost() {
       <input
         class="border-3 border-dashed border-slate-200 bg-slate-100 text-slate-500 rounded p-2"
         type="file"
-        name="upload-cover"
+        name="cover"
       />
       <input
         v-model="title"
@@ -62,6 +59,7 @@ async function createPost() {
       />
       <textarea
         v-model="contents"
+        name="contents"
         rows="5"
         class="bg-slate-200 p-2 rounded"
       ></textarea>

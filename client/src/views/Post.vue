@@ -43,7 +43,7 @@ async function getPost() {
 <template>
   <section v-if="post" class="w-full md:w-3/4 lg:w-1/2 bg-white border-1 border-slate-200 rounded-lg overflow-hidden">
     <!-- Cover Photo -->
-    <img v-if="post.cover" :src="`/images/${post.cover}`" :alt="post.coverAlt">
+    <img v-if="post.cover" :src="`${BASE_API_URL}/uploads/${post.cover}`" :alt="post.coverAlt">
 
     <div class="px-5 py-4">
       <h2 class="font-semibold text-2xl text-slate-800">{{ post.title }}</h2>

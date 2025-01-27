@@ -1,7 +1,7 @@
 import express from 'express'
 import cookieParser from 'cookie-parser'
-import connectDb from './config/db.js'
 import path from 'path'
+import connectDb from './config/db.js'
 import api from './routes/index.js'
 
 const PORT = process.env.PORT || 3001;

@@ -37,20 +37,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/post/:slug',
     name: 'post',
     component: () => import('../views/Post.vue'),
-//     beforeEnter(to, from) {
-//       const exists = sourceData.posts.find(
-//         post => post.slug === to.params.slug
-//       );
-// 
-//       if (!exists) {
-//         return {
-//           name: 'NotFound',
-//           params: { pathMatch: to.path.substring(1).split('/') },
-//           query: to.query,
-//           hash: to.hash,
-//         };
-//       }
-//     },
     props: true
   },
   {
