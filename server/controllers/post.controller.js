@@ -28,7 +28,9 @@ export const getAllPosts = asyncHandler(async (req, res) => {
 });
 
 export const searchPosts = asyncHandler(async (req, res) => {
-  res.json('search');
+  const query = req.query;
+
+  res.json(query);
 });
 
 export const createPost = asyncHandler(async (req, res) => {
