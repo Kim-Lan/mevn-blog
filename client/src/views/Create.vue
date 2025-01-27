@@ -1,8 +1,10 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { BASE_API_URL } from '../constants.js'
 import { useAuthStore } from '../stores/auth.store.ts'
 
+const router = useRouter();
 const auth = useAuthStore();
 
 const errorMessage = ref('');
@@ -16,15 +18,13 @@ async function createPost() {
     isLoading.value = true;
     let formData = new FormData(document.getElementById('createForm'));
     formData.append('author', auth.user.username);
-    console.log(formData);
     const response = await fetch(`${BASE_API_URL}/api/create`, {
       method: 'POST',
       body: formData,
     });
     if (response && response.ok) {
       const data = await response.json();
-      console.log(data);
-      
+      router.push({ name: 'post', params: { slug: data.slug }});
     } else {
       errorMessage.value = response.statusText;
     }
