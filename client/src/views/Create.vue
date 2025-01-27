@@ -24,7 +24,7 @@ async function createPost() {
     if (response && response.ok) {
       const data = await response.json();
       console.log(data);
-      errorMessage.value = '';
+      
     } else {
       errorMessage.value = response.statusText;
     }
