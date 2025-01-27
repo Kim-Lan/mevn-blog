@@ -1,5 +1,7 @@
 import express from 'express'
 import path from 'path'
+import cors from 'cors'
+import { corsOptions } from './config/cors.js'
 import connectDb from './config/db.js'
 import api from './routes/index.js'
 
@@ -9,9 +11,12 @@ const app = express();
 
 connectDb();
 
-// Middleware for parsing JSON, urlencoded form data, and cookies
+// Middleware for parsing JSON and urlencoded form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// CORS
+app.use(cors(corsOptions));
 
 app.use('/api', api);
 app.use(express.static('public'));
