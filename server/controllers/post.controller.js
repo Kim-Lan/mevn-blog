@@ -1,5 +1,4 @@
 import asyncHandler from 'express-async-handler'
-import bcrypt from 'bcrypt'
 import fs from 'fs'
 import { User } from '../models/user.model.js'
 import { Post } from '../models/post.model.js'
@@ -26,6 +25,10 @@ export const getAllPosts = asyncHandler(async (req, res) => {
   });
 
   res.status(200).json(posts);
+});
+
+export const searchPosts = asyncHandler(async (req, res) => {
+  res.json('search');
 });
 
 export const createPost = asyncHandler(async (req, res) => {
@@ -68,55 +71,3 @@ export const createPost = asyncHandler(async (req, res) => {
   res.status(200).json({ ...post.toObject(), author: user.toObject().username });
 });
 
-export const loginUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
-
-  const user = await User.findOne({ email });
-
-  if (!user) {
-    res.status(401).json({ 'message': 'Unauthorized' });
-    return;
-  }
-
-  const isValid = await bcrypt.compare(password, user.password);
-
-  if (!isValid) {
-    res.status(401).json({ 'message': 'Unauthorized' });
-    return;
-  }
-
-  const userObj = user.toObject();
-  res.status(200).json({
-    id: userObj._id,
-    username: userObj.username,
-    email: userObj.email,
-  });
-});
-
-export const registerUser = asyncHandler(async (req, res) => {
-  const { username, email, password } = req.body;
-
-  if (!username || !email || !password) {
-    res.status(400).json({ 'error': 'All fields are required'});
-    return;
-  }
-
-  const existingUser = await User.exists({ username: { '$regex': username, $options: 'i' }});
-  if (existingUser) {
-    res.status(409).json({ 'error': 'Username already taken'});
-    return;
-  }
-
-  const existingEmail = await User.exists({ email });
-  if(existingEmail) {
-    res.status(409).json({ 'error': 'Email already in use' });
-    return;
-  }
-
-  const salt = await bcrypt.genSalt(10);
-  const hashedPassword = await bcrypt.hash(password, salt);
-
-  const user = await User.create({ username, email , password: hashedPassword });
-
-  res.status(201).json({ 'message': 'Successfully registered' });
-});

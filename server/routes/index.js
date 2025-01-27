@@ -1,7 +1,8 @@
 import express from 'express'
 import multer from 'multer'
 import path from 'path'
-import { getPost, getAllPosts, createPost, loginUser, registerUser } from '../controllers/index.js'
+import { loginUser, registerUser } from '../controllers/auth.controller.js'
+import { getPost, getAllPosts, searchPosts, createPost } from '../controllers/post.controller.js'
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -23,6 +24,8 @@ const router = express.Router();
 router.get('/post/:slug', getPost);
 
 router.get('/posts', getAllPosts);
+
+router.get('/search', searchPosts);
 
 router.post('/create', upload.single('cover'), createPost);
 
