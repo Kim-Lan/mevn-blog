@@ -1,6 +1,6 @@
 # MEVN Blog
 
-MEVN (MongoDB, Express, Vue, Node) blog with user authentication, state management with Pinia , image upload with Multer, and search functionality.
+MEVN (MongoDB, Express, Vue, Node) blog with user authentication, state management with Pinia, image upload with Multer, and search functionality.
 
 ## Screenshots
 ![Screenshot of home page](/assets/screenshot-1.png)
