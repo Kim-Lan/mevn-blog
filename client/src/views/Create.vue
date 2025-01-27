@@ -15,17 +15,16 @@ async function createPost() {
   try {
     isLoading.value = true;
     const response = await fetch(`${BASE_API_URL}/api/create`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          title: title.value,
-          author: auth.user.username,
-          contents: contents.value
-        }),
-      }
-    );
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        title: title.value,
+        author: auth.user.username,
+        contents: contents.value
+      }),
+    });
     if (response && response.ok) {
       const data = await response.json();
       console.log(data);

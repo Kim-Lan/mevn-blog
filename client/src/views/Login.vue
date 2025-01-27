@@ -19,16 +19,15 @@ async function login() {
   try {
     isLoading.value = true;
     const response = await fetch(`${BASE_API_URL}/api/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: email.value.toLowerCase(),
-          password: password.value,
-        }),
-      }
-    );
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email.value.toLowerCase(),
+        password: password.value,
+      }),
+    });
     if (response && response.ok) {
       const data = await response.json();
       auth.setUser(data);
