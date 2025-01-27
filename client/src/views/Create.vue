@@ -1,8 +1,51 @@
+<script setup>
+import { ref } from 'vue'
+import { BASE_API_URL } from '../constants.js'
+import { useAuthStore } from '../stores/auth.store.ts'
+
+const auth = useAuthStore();
+
+const errorMessage = ref('');
+const isLoading = ref(false);
+
+const title = ref('');
+const contents = ref('');
+
+async function createPost() {
+  try {
+    isLoading.value = true;
+    const response = await fetch(`${BASE_API_URL}/api/create`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          title: title.value,
+          author: auth.user.username,
+          contents: contents.value
+        }),
+      }
+    );
+    if (response && response.ok) {
+      const data = await response.json();
+      console.log(data);
+      errorMessage.value = '';
+    } else {
+      errorMessage.value = response.statusText;
+    }
+  } catch (error) {
+    console.error(error);
+    errorMessage.value = error.message;
+  } finally {
+    isLoading.value = false;
+  }
+}
+</script>
+
 <template>
   <section class="w-full md:w-3/4 lg:w-1/2">
     <form
-      method="post"
-      action="/upload"
+      @submit.prevent="createPost"
       enctype="multipart/form-data"
       class="flex flex-col gap-4 bg-white p-8 rounded"
     >
@@ -13,12 +56,17 @@
         name="upload-cover"
       />
       <input
+        v-model="title"
         name="title"
         placeholder="Post Title"
         class="bg-slate-200 p-2 rounded"
       />
-      <textarea rows="5" class="bg-slate-200 p-2 rounded"></textarea>
-      <button class="bg-blue-400 text-white drop-shadow rounded p-2">Create Post</button>
+      <textarea
+        v-model="contents"
+        rows="5"
+        class="bg-slate-200 p-2 rounded"
+      ></textarea>
+      <button class="bg-blue-400 hover:bg-blue-300 active:bg-blue-500 text-white drop-shadow rounded p-2">Create Post</button>
     </form>
   </section>
 </template>

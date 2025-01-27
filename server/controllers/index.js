@@ -1,13 +1,39 @@
 import asyncHandler from 'express-async-handler'
+import bcrypt from 'bcrypt'
 import { User } from '../models/user.model.js'
-import bcrypt from 'bcrypt';
+import { Post } from '../models/post.model.js'
+import { getSlug } from '../utils/utils.js'
 
 export const getAllPosts = asyncHandler(async (req, res) => {
   res.json('get all posts');
 });
 
 export const createPost = asyncHandler(async (req, res) => {
-  res.json('create post');
+  const { title, author, contents } = req.body;
+
+  const slug = getSlug(title);
+
+  const existingPost = await Post.exists({ slug });
+  if (existingPost) {
+    res.status(409).json({ 'error': 'Post title already exists'});
+    return;
+  }
+
+  const user = await User.findOne({ username: author });
+  if (!user) {
+    res.status(409).json({ 'error': 'Username not found'});
+    return;
+  }
+
+  const post = await Post.create({
+    title,
+    slug,
+    author: user,
+    contents,
+    date: Date.now(),
+  });
+
+  res.status(200).json({ ...post.toObject(), author: user.toObject().username });
 });
 
 export const loginUser = asyncHandler(async (req, res) => {

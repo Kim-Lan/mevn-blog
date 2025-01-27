@@ -2,8 +2,7 @@
 import { ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth.store.ts'
-
-const BASE_API_URL = 'http://localhost:3001';
+import { BASE_API_URL } from '../constants.js'
 
 const route = useRoute();
 const router = useRouter();
