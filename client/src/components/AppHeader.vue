@@ -1,3 +1,20 @@
+<script setup>
+import { useRoute, useRouter } from 'vue-router'
+import { useAuthStore } from '../stores/auth.store.ts'
+
+const route = useRoute();
+const router = useRouter();
+
+const auth = useAuthStore();
+
+function logout() {
+  auth.setUser(null);
+  if (route.meta.requiresAuth) {
+    router.push({ name: 'home' });
+  }
+}
+</script>
+
 <template>
   <header class="bg-blue-400 text-white border-b-4 border-slate-200 px-6 py-4 flex justify-between">
     <router-link to="/">
@@ -11,11 +28,14 @@
           Create
         </div>
       </router-link>
-      <router-link :to="{ name: 'login' }" class="p-2">
+      <router-link v-if="!auth.user" :to="{ name: 'login' }" class="p-2">
         <div class="flex flex-col justify-center">
           Login
         </div>
       </router-link>
+      <div v-else class="flex flex-col justify-center cursor-pointer" @click="logout">
+        Logout
+      </div>
     </div>
   </header>
 </template>

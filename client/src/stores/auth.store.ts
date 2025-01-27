@@ -10,10 +10,13 @@ export interface User {
 export const useAuthStore = defineStore('auth', () => {
   const user: User = ref(JSON.parse(localStorage.getItem('user')));
 
+  function saveUser() {
+    localStorage.setItem('user', JSON.stringify(user.value));
+  }
+
   function setUser(newUser: User): void {
     user.value = newUser;
-
-    localStorage.setItem('user', JSON.stringify(user.value));
+    saveUser();
   }
 
   return { user, setUser }
