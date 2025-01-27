@@ -19,7 +19,7 @@ export const getPost = asyncHandler(async (req, res) => {
 });
 
 export const getAllPosts = asyncHandler(async (req, res) => {
-  const posts = await Post.find({}).populate({
+  const posts = await Post.find().populate({
     path: 'author',
     select: 'username'
   });
@@ -30,21 +30,18 @@ export const getAllPosts = asyncHandler(async (req, res) => {
 export const searchPosts = asyncHandler(async (req, res) => {
   const { query } = req.query;
 
-  const matchTitle = await Post.find({
-    title: { $regex: query, $options: 'i'}
-  }).populate({
+  const posts = await Post.find({}).populate({
     path: 'author',
     select: 'username'
   });
-
-  const matchContents = await Post.find({
-    contents: { $regex: query, $options: 'i'}
-  }).populate({
-    path: 'author',
-    select: 'username'
+  const match = posts.filter((post) => {
+    const q = query.toLowerCase();
+    return post.title.toLowerCase().includes(q) ||
+      post.contents.toLowerCase().includes(q) ||
+      post.author.username.toLowerCase().includes(q);
   });
 
-  res.status(200).json([...matchTitle, ...matchContents]);
+  res.status(200).json(match);
 });
 
 export const createPost = asyncHandler(async (req, res) => {
