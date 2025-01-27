@@ -25,13 +25,13 @@ function logout() {
 
 <template>
   <header class="bg-blue-400 text-white border-b-4 border-slate-200 px-6 py-4 flex justify-between">
-    <div class="flex gap-6">
+    <div class="flex flex-col md:flex-row gap-4 md:gap-6">
       <router-link to="/">
-        <h1 class="font-bold text-4xl hover:text-slate-200">MEVN Blog</h1>
+        <h1 class="font-bold text-3xl md:text-4xl hover:text-slate-200">MEVN Blog</h1>
       </router-link>
       <form
         @submit.prevent="search"
-        class="self-end text-slate-700"
+        class="md:self-end text-slate-700"
       >
         <input
           v-model="searchTerm"
@@ -47,7 +47,7 @@ function logout() {
       </form>
     </div>
 
-    <div class="flex gap-4 font-bold">
+    <div class="flex items-start gap-4 font-bold text-sm md:text-base">
       <router-link :to="{ name: 'create' }">
         <div class="rounded-lg bg-slate-100 hover:bg-slate-300 active:bg-slate-400 text-slate-700 py-2 px-3">
           <font-awesome-icon :icon="['fas', 'plus']" />
@@ -59,7 +59,7 @@ function logout() {
           Login
         </div>
       </router-link>
-      <div v-else class="flex flex-col justify-center cursor-pointer hover:text-slate-200" @click="logout">
+      <div v-else class="flex flex-col justify-center cursor-pointer hover:text-slate-200 py-2" @click="logout">
         Logout
       </div>
     </div>
