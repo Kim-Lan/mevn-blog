@@ -29,7 +29,7 @@ async function getPosts() {
   <div class="w-full md:w-3/4 lg:w-1/2 flex flex-col gap-6">
     <section
       v-if="posts"
-      v-for="post in posts"
+      v-for="post in posts.slice().reverse()"
       class="w-full bg-white border-1 border-slate-200 rounded-lg overflow-hidden"
     >
       <!-- Cover Photo -->
@@ -39,7 +39,7 @@ async function getPosts() {
 
       <div class="px-4 py-3">
         <router-link  :to="{ name: 'post', params: { slug: post.slug }}">
-          <h2 class="font-semibold text-2xl text-slate-800">{{ post.title }}</h2>
+          <h2 class="font-semibold text-2xl text-slate-800 hover:text-slate-400">{{ post.title }}</h2>
         </router-link>
         <p class="text-sm text-slate-600 mb-2">
           @{{ post.author.username }} &middot; {{ formatDate(post.date) }}
