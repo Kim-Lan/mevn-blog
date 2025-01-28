@@ -20,6 +20,9 @@ async function createPost() {
     formData.append('author', auth.user.username);
     const response = await fetch(`${BASE_API_URL}/api/create`, {
       method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${auth.accessToken}`
+      },
       body: formData,
     });
     if (response && response.ok) {

@@ -44,6 +44,14 @@ export const searchPosts = asyncHandler(async (req, res) => {
   res.status(200).json(match);
 });
 
+function deleteFile(path) {
+  fs.unlink(path, (err) => {
+    if (err) {
+      console.error('Error deleting file', err);
+    }
+  });
+}
+
 export const createPost = asyncHandler(async (req, res) => {
   const { title, author, contents } = req.body;
   const cover = req.file
@@ -53,22 +61,22 @@ export const createPost = asyncHandler(async (req, res) => {
   const existingPost = await Post.exists({ slug });
   if (existingPost) {
     res.status(409).json({ 'error': 'Post title already exists'});
-    fs.unlink(cover.path, (err) => {
-      if (err) {
-        console.error('Error deleting file', err);
-      }
-    });
+
+    if (cover) {
+      deleteFile(cover.path);
+    }
+
     return;
   }
 
   const user = await User.findOne({ username: author });
   if (!user) {
     res.status(404).json({ 'error': 'Username not found'});
-    fs.unlink(cover.path, (err) => {
-      if (err) {
-        console.error('Error deleting file', err);
-      }
-    });
+
+    if (cover) {
+      deleteFile(cover.path);
+    }
+
     return;
   }
 
@@ -78,7 +86,7 @@ export const createPost = asyncHandler(async (req, res) => {
     author: user,
     contents,
     date: Date.now(),
-    cover: cover.filename,
+    cover: cover ? cover.filename : null,
   });
 
   res.status(200).json({ ...post.toObject(), author: user.toObject().username });

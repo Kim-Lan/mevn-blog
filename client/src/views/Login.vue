@@ -30,7 +30,12 @@ async function login() {
     });
     if (response && response.ok) {
       const data = await response.json();
-      auth.setUser(data);
+      auth.setUser({
+        id: data.id,
+        username: data.username,
+        email: data.email
+      });
+      auth.setAccessToken(data.token);
       errorMessage.value = '';
       const redirectPath = route.query.redirect || '/';
       router.push(redirectPath);
